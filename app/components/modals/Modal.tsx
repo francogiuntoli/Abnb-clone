@@ -141,7 +141,7 @@ function Modal({
                 <button
                   className="
                     absolute
-                    left-9 
+                    right-8
                     border-0
                     p-1
                     transition
@@ -149,7 +149,7 @@ function Modal({
                   "
                   onClick={handleClose}
                 >
-                  <IoMdClose size={18} />
+                  <IoMdClose size={20} />
                 </button>
                 <div className="text-lg font-semibold">{title}</div>
               </div>
