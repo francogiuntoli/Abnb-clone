@@ -48,6 +48,9 @@ export default function RentModal() {
 
   const category = watch("category")
   const location = watch("location")
+  const guestCount = watch("guestCount")
+  const roomCount = watch("roomCount")
+  const bathroomCount = watch("bathroomCount")
 
   const Map = useMemo(
     () =>
@@ -127,7 +130,26 @@ export default function RentModal() {
           title="Share some basics about your place"
           subtitle="What amenities do you have?"
         />
-        <Counter />
+        <Counter
+          title="Guests"
+          subtitle="How many guests do you allow?"
+          value={guestCount}
+          onChange={(value) => setCustomValue("guestCount", value)}
+        />
+        <hr />
+        <Counter
+          title="Rooms"
+          subtitle="How many rooms do you have?"
+          value={roomCount}
+          onChange={(value) => setCustomValue("roomCount", value)}
+        />
+        <hr />
+        <Counter
+          title="Bathroom"
+          subtitle="How many bathrooms do you have?"
+          value={bathroomCount}
+          onChange={(value) => setCustomValue("bathroomCount", value)}
+        />
       </div>
     )
   }
