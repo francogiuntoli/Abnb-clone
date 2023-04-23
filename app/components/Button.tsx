@@ -23,7 +23,7 @@ export default function Button({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`disabled: relative w-full cursor-not-allowed rounded-lg transition hover:opacity-80 disabled:opacity-70 
+      className={`relative w-full rounded-lg transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-70 
                   ${
                     outline
                       ? "border-black bg-white text-black"

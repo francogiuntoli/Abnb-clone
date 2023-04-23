@@ -25,14 +25,15 @@ export default function Input({
   errors,
 }: InputProps) {
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       {formatPrice && (
         <BiDollar
           size={24}
-          className="text-neutral-700 absolute top-5 left-2"
+          className="absolute left-2 top-5 text-neutral-700"
         />
       )}
       <input
+        autoComplete="off"
         id={id}
         disabled={disabled}
         {...register(id, { required })}
@@ -41,16 +42,16 @@ export default function Input({
         className={`
         peer
         w-full
+        rounded-md
+        border-2
+        bg-white
         p-4
         pt-6
         font-light
-        bg-white
-        border-2
-        rounded-md
         outline-none
         transition
-        disabled:opacity-70
         disabled:cursor-not-allowed
+        disabled:opacity-70
         ${formatPrice ? "pl-9" : "pl-4"}
         ${
           errors[id]
@@ -61,12 +62,12 @@ export default function Input({
         `}
       />
       <label
-        className={`absolute text-md duration-150 transform -translate-y-3 top-5 z-10 origin-[0]
+        className={`text-md absolute top-5 z-10 origin-[0] -translate-y-3 transform duration-150
         ${formatPrice ? "left-9" : "left-4"}
-        peer-placeholder-shown:scale-100
         peer-placeholder-shown:translate-y-0
-        peer-focus:scale-75
+        peer-placeholder-shown:scale-100
         peer-focus:-translate-y-4
+        peer-focus:scale-75
         ${errors[id] ? "text-rose-500" : "text-zinc-400 "}
         `}
       >
