@@ -33,7 +33,7 @@ export default function Input({
         />
       )}
       <input
-        autoComplete="off"
+        autoComplete="new-password"
         id={id}
         disabled={disabled}
         {...register(id, { required })}
