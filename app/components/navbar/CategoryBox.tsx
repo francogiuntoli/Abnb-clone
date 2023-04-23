@@ -40,9 +40,12 @@ export default function CategoryBox({
       },
       { skipNull: true }
     )
-  }, [])
+
+    router.push(url)
+  }, [label, params, router])
   return (
     <div
+      onClick={handleClick}
       className={`flex cursor-pointer flex-col items-center justify-center gap-2 border-b-2 p-3 transition hover:text-neutral-800
     ${
       selected
