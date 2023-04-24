@@ -1,13 +1,15 @@
 "use client"
 
-import useCountries from "@/app/hooks/useCountries"
 import { SafeUser } from "@/app/types"
 import { Listing, Reservation } from "@prisma/client"
 import { format } from "date-fns"
 
+import useCountries from "@/app/hooks/useCountries"
 import { useRouter } from "next/navigation"
 import { useCallback, useMemo } from "react"
 
+import Image from "next/image"
+import HeartButton from "./HeartButton"
 interface ListingCardProps {
   data: Listing
   reservation?: Reservation
@@ -56,5 +58,24 @@ export default function ListingCard({
     return `${format(start, "PP")} - ${format(end, "PP")}`
   }, [reservation])
 
-  return <div>ListingCard</div>
+  return (
+    <div
+      onClick={() => router.push(`/listings/${data.id}`)}
+      className="group col-span-1 cursor-pointer"
+    >
+      <div className="flex w-full flex-col gap-2">
+        <div className="relative aspect-square w-full overflow-hidden rounded-xl">
+          <Image
+            fill
+            alt="listing"
+            src={data.imageSrc}
+            className="h-full w-full object-cover transition group-hover:scale-110"
+          />
+          <div className="absolute right-3 top-3">
+            <HeartButton listingId={data.id} currentUser={currentUser} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
