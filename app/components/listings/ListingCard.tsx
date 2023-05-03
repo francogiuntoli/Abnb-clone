@@ -10,6 +10,7 @@ import { useCallback, useMemo } from "react"
 
 import Image from "next/image"
 import HeartButton from "./HeartButton"
+import Button from "../Button"
 interface ListingCardProps {
   data: Listing
   reservation?: Reservation
@@ -75,6 +76,24 @@ export default function ListingCard({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
+        <div className="text-lg font-semibold">
+          {location?.region}, {location?.label}
+        </div>
+        <div className="font-light text-neutral-500">
+          {reservationDate || data.category}
+        </div>
+        <div className="flex flex-row items-center gap-1">
+          <div className="font-semibold">$ {price}</div>
+          {!reservation && <div className="font-light">night</div>}
+        </div>
+        {onAction && actionLabel && (
+          <Button
+            disabled={disabled}
+            onClick={handleCancel}
+            label={actionLabel}
+            small
+          />
+        )}
       </div>
     </div>
   )
