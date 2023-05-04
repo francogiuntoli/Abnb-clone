@@ -14,11 +14,13 @@ export default async function PropertiesPage() {
 
   const listings = await getListings({ userId: currentUser.id })
 
-  if (listings.length == 0) {
-    ;<EmptyState
-      title="No properties found"
-      subtitle="Looks like you have no properties."
-    />
+  if (listings.length === 0) {
+    return (
+      <EmptyState
+        title="No properties found"
+        subtitle="Looks like you have no properties."
+      />
+    )
   }
 
   return <PropertiesClient listings={listings} currentUser={currentUser} />
