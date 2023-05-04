@@ -7,7 +7,7 @@ interface ErrorStateProps {
   error: Error
 }
 
-export default function error({ error }: ErrorStateProps) {
+export default function Error({ error }: ErrorStateProps) {
   useEffect(() => {
     console.error(error)
   }, [error])
