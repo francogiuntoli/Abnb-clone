@@ -10,7 +10,7 @@ import ClientOnly from "./components/ClientOnly"
 import SearchModal from "./components/modals/SearchModal"
 
 export const metadata = {
-  title: "AirBnB",
+  title: "AirBnB clone",
   description: "AirBnB clone",
 }
 
@@ -26,6 +26,7 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser()
   return (
     <html lang="en">
+      <head />
       <body className={font.className}>
         {/* <ClientOnly> */}
 
