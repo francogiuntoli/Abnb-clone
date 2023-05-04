@@ -39,27 +39,13 @@ export default function Input({
         {...register(id, { required })}
         placeholder=" "
         type={type}
-        className={`
-        peer
-        w-full
-        rounded-md
-        border-2
-        bg-white
-        p-4
-        pt-6
-        font-light
-        outline-none
-        transition
-        disabled:cursor-not-allowed
-        disabled:opacity-70
-        ${formatPrice ? "pl-9" : "pl-4"}
-        ${
+        className={`peer w-full rounded-md border-2 bg-white p-4 pt-6 font-light outline-none transition  disabled:cursor-not-allowed disabled:opacity-70 ${
+          formatPrice ? "pl-9" : "pl-4"
+        } ${
           errors[id]
             ? "border-rose-500 focus:border-rose-500"
             : "border-neutral-300 focus:border-black"
-        }
-        
-        `}
+        }`}
       />
       <label
         className={`text-md absolute top-5 z-10 origin-[0] -translate-y-3 transform duration-150
