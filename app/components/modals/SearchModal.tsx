@@ -87,6 +87,7 @@ export default function SearchModal() {
     searchModal.onClose()
     router.push(url)
   }, [
+    router,
     step,
     searchModal,
     location,
