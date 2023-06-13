@@ -39,7 +39,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
           onClick={onRent}
           className="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition  hover:bg-neutral-100 md:block"
         >
-          Airbnb your home
+          NewBieNB your home
         </div>
         <div
           onClick={toggleOpen}
@@ -72,7 +72,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
                   onClick={() => router.push("/properties")}
                   label="My properties"
                 />
-                <MenuItem onClick={rentModal.onOpen} label="Airbnb my home" />
+                <MenuItem onClick={rentModal.onOpen} label="NewBieNB my home" />
                 <hr />
                 <MenuItem onClick={() => signOut()} label="Logout" />
               </>

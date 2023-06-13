@@ -257,7 +257,7 @@ export default function RentModal() {
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      title="Airbnb your home!"
+      title="NewBieNB your home!"
       body={bodyContent}
     />
   )
