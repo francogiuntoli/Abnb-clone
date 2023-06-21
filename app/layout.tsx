@@ -6,7 +6,7 @@ import ToasterProvider from "./providers/ToasterProvider"
 import LoginModal from "./components/modals/LoginModal"
 import RentModal from "./components/modals/RentModal"
 import getCurrentUser from "./actions/getCurrentUser"
-import ClientOnly from "./components/ClientOnly"
+import { Analytics } from "@vercel/analytics/react"
 import SearchModal from "./components/modals/SearchModal"
 
 export const metadata = {
@@ -28,15 +28,13 @@ export default async function RootLayout({
     <html lang="en">
       <head />
       <body className={font.className}>
-        {/* <ClientOnly> */}
-
         <ToasterProvider />
         <LoginModal />
         <RegisterModal />
         <SearchModal />
         <RentModal />
         <Navbar currentUser={currentUser} />
-        {/* </ClientOnly> */}
+        <Analytics mode="production" />
         <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
