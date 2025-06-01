@@ -29,6 +29,8 @@ export default function LoginModal() {
     formState: { errors },
   } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
     defaultValues: {
       email: "",
       password: "",
@@ -58,7 +60,7 @@ export default function LoginModal() {
   }, [loginModal, registerModal])
 
   const bodyContent = (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <Heading title="Welcome back" subtitle="Login to your account!" />
       <Input<LoginSchema>
         id="email"
@@ -117,7 +119,7 @@ export default function LoginModal() {
 
   return (
     <Modal
-      disabled={isLoading}
+      disabled={isLoading || !!errors}
       isOpen={loginModal.isOpen}
       title="Login"
       actionLabel="Continue"

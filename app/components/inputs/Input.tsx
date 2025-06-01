@@ -1,7 +1,14 @@
-"use client"
+"use client";
 
-import { FieldErrors, FieldValues, Path, UseFormRegister } from "react-hook-form"
-import { BiDollar } from "react-icons/bi"
+import {
+  FieldErrors,
+  FieldValues,
+  Path,
+  UseFormRegister,
+  FieldError,
+  get,
+} from "react-hook-form";
+import { BiDollar } from "react-icons/bi";
 
 interface InputProps<T extends FieldValues = FieldValues> {
   id: Path<T>;
@@ -26,12 +33,15 @@ export default function Input<T extends FieldValues = FieldValues>({
   errors,
   onKeyDown,
 }: InputProps<T>) {
-  const fieldError = errors[id as keyof typeof errors];
+  const fieldError = get(errors, id) as FieldError | undefined;
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full pb-6">
       {formatPrice && (
-        <BiDollar size={24} className="absolute left-2 top-5 text-neutral-700" />
+        <BiDollar
+          size={24}
+          className="absolute left-2 top-5 text-neutral-700"
+        />
       )}
 
       <input
@@ -61,6 +71,15 @@ export default function Input<T extends FieldValues = FieldValues>({
       >
         {label}
       </label>
+
+      <p
+        className={`
+          absolute left-0 bottom-0 text-sm text-rose-500 transition-opacity duration-200
+          ${fieldError ? "opacity-100" : "opacity-0"}
+        `}
+      >
+        {fieldError?.message?.toString()}
+      </p>
     </div>
   );
 }

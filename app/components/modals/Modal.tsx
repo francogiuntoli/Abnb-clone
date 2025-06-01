@@ -154,9 +154,9 @@ function Modal({
                 <div className="text-lg font-semibold">{title}</div>
               </div>
               {/*body*/}
-              <div className="relative flex-auto p-6">{body}</div>
+              <div className="relative flex-auto p-6 pb-3">{body}</div>
               {/*footer*/}
-              <div className="flex flex-col gap-2 p-6">
+              <div className="flex flex-col gap-2 pt-0 p-6">
                 <div
                   className="
                     flex 

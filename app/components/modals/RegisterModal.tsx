@@ -27,6 +27,8 @@ export default function RegisterModal() {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterSchema>({
+    mode: "onChange",
+    reValidateMode: "onChange",
     resolver: zodResolver(registerSchema),
     defaultValues: {
       email: "",
@@ -95,7 +97,7 @@ export default function RegisterModal() {
   )
 
   const footerContent = (
-    <div className="mt-3 flex flex-col gap-4">
+    <div className="mt-3 flex flex-col gap-2">
       <hr />
       <Button
         outline
@@ -125,7 +127,7 @@ export default function RegisterModal() {
 
   return (
     <Modal
-      disabled={isLoading}
+      disabled={isLoading || !!errors}
       isOpen={registerModal.isOpen}
       title="Register"
       actionLabel="Continue"
