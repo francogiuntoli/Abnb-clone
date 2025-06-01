@@ -37,10 +37,6 @@ function Modal({
   }, [isOpen])
 
   const handleClose = useCallback(() => {
-    if (disabled) {
-      return
-    }
-
     setShowModal(false)
     setTimeout(() => {
       onClose()
