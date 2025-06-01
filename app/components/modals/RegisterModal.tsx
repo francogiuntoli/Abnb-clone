@@ -14,6 +14,8 @@ import { toast } from "react-hot-toast"
 import Button from "../Button"
 import { signIn } from "next-auth/react"
 import useLoginModal from "@/app/hooks/useLoginModal"
+import { registerSchema, RegisterSchema } from "@/app/libs/schemas/registerSchema"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 export default function RegisterModal() {
   const registerModal = useRegisterModal()
@@ -24,11 +26,12 @@ export default function RegisterModal() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
-      name: "",
       email: "",
-      passworod: "",
+      name: "",
+      password: "",
     },
   })
 
@@ -57,15 +60,16 @@ export default function RegisterModal() {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to NewBieNB" subtitle="Create an account!" />
-      <Input
+      <Input<RegisterSchema>
         id="email"
         label="Email"
         register={register}
         disabled={isLoading}
         errors={errors}
         required
+        type="email"
       />
-      <Input
+      <Input<RegisterSchema>
         id="name"
         label="Name"
         register={register}
@@ -73,7 +77,7 @@ export default function RegisterModal() {
         errors={errors}
         required
       />
-      <Input
+      <Input<RegisterSchema>
         id="password"
         label="Password"
         type="password"
@@ -81,6 +85,11 @@ export default function RegisterModal() {
         disabled={isLoading}
         errors={errors}
         required
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit(onSubmit)()
+          }
+        }}
       />
     </div>
   )

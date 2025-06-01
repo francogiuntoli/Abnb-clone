@@ -5,6 +5,7 @@ import { AiFillGithub } from "react-icons/ai"
 import { FcGoogle } from "react-icons/fc"
 import { useCallback, useState } from "react"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import Modal from "./Modal"
 import Heading from "../Heading"
@@ -14,6 +15,7 @@ import Button from "../Button"
 import useLoginModal from "@/app/hooks/useLoginModal"
 import useRegisterModal from "@/app/hooks/useRegisterModal"
 import { useRouter } from "next/navigation"
+import { loginSchema, LoginSchema } from "@/app/libs/schemas/loginSchema"
 
 export default function LoginModal() {
   const loginModal = useLoginModal()
@@ -25,12 +27,14 @@ export default function LoginModal() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({
+  } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      passworod: "",
+      password: "",
     },
-  })
+  });
+
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true)
@@ -56,21 +60,27 @@ export default function LoginModal() {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Login to your account!" />
-      <Input
+      <Input<LoginSchema>
         id="email"
         label="Email"
         register={register}
         disabled={isLoading}
         errors={errors}
         required
+        type="email"
       />
-      <Input
+      <Input<LoginSchema>
         id="password"
         label="Password"
         type="password"
         register={register}
         disabled={isLoading}
         errors={errors}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit(onSubmit)()
+          }
+        }}
         required
       />
     </div>
